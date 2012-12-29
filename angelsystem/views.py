@@ -25,7 +25,6 @@ def shifts(request, date=False):
 		return redirect('angelsystem.views.shifts', date=_get_dates()[0])
 
 	categories = ShiftCategory.objects.all().order_by('name')
-	sorted_out = {}
 	day_range = range(25)
 	out = OrderedDict()
 
