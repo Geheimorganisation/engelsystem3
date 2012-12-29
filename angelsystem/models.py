@@ -6,7 +6,7 @@ from django.contrib import admin
 
 class ShiftCategory(models.Model):
 	name = models.CharField(unique=True, max_length=30)
-	herald = models.ForeignKey(User, limit_choices_to={'is_staff': True})
+	arch = models.ForeignKey(User, limit_choices_to={'is_staff': True})
 
 	def __unicode__(self):
 		return self.name
@@ -34,7 +34,7 @@ class ShiftAdmin(admin.ModelAdmin):
 ## BLOG
 
 class Blog(models.Model):
-	herald = models.ForeignKey(User, limit_choices_to={'is_staff': True})
+	arch = models.ForeignKey(User, limit_choices_to={'is_staff': True})
 	title = models.CharField(max_length=30)
 	content = models.TextField()
 	create_time = models.DateTimeField(auto_now_add=True)
