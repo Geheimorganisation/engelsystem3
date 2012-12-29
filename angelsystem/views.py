@@ -22,7 +22,9 @@ def blog(request):
 @login_required
 def shifts(request, date=False):
 	if not date:
-		return redirect('angelsystem.views.shifts', date=_get_dates()[0])
+		the_date = _get_dates()
+		if the_date:
+			return redirect('angelsystem.views.shifts', date=the_date[0])
 
 	categories = ShiftCategory.objects.all().order_by('name')
 	hours = range(25)
@@ -43,7 +45,7 @@ def shifts(request, date=False):
 		'user': request.user,
 		'shifts': sorted(shift_hours, lambda shift_hour: shift_hour[0]),
 		'categories': categories,
-		'dates': _getDates(),
+		'dates': _get_dates(),
 		'path': request.path
 	})
 
@@ -55,6 +57,9 @@ def my_shifts(request):
 def _get_dates():
 	shifts = Shift.objects.all()
 	dates = []
+
+	if not shifts:
+		return False
 
 	for shift in shifts:
 		start_date = shift.start_time.strftime('%Y-%m-%d')
