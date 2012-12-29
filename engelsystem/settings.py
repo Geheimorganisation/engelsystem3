@@ -56,7 +56,7 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = 'angelsystem/static/'
+STATIC_ROOT = 'engelsystem/static/'
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -103,7 +103,7 @@ ROOT_URLCONF = 'engelsystem.urls'
 WSGI_APPLICATION = 'engelsystem.wsgi.application'
 
 TEMPLATE_DIRS = (
-    'angelsystem/templates'
+    'engelsystem/templates'
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -120,7 +120,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
-    'angelsystem'
+    'engelsystem'
 )
 
 # A sample logging configuration. The only tangible logging

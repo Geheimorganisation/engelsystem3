@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response, redirect
 from django.conf import settings
 from django.http import HttpResponse
-from angelsystem.models import Blog, ShiftCategory, Shift
+from engelsystem.models import Blog, ShiftCategory, Shift
 from collections import OrderedDict
 
 @login_required
@@ -22,7 +22,7 @@ def blog(request):
 @login_required
 def shifts(request, date=False):
 	if not date:
-		return redirect('angelsystem.views.shifts', date=_getDates()[0])
+		return redirect('engelsystem.views.shifts', date=_getDates()[0])
 
 	categories = ShiftCategory.objects.all().order_by('name')
 	sorted_out = {}
