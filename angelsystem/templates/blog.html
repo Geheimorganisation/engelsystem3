@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+	{% for entry in entries %}
+		<article>
+			<h2>{{ entry.title }} <small>von {{ entry.herald }} | {{ entry.create_time }}</small></h2>
+
+			{{ entry.content }}
+		</article>
+	{% endfor %}
+{% endblock %}
