@@ -17,20 +17,21 @@
 		</thead>
 
 		<tbody>
-			{% for h in shifts %}
-				<tr>
-					<th>{{ h.0 }}</th>
+			{% for hour in shift_hours %}
+			<tr>
+				<th>{{ h.1 }}</th>
 
-					{% for c, v in h.1.items %}
-						<td>
-							{% for shift in v %}
-								Von {{ shift.start_time }} bis {{ shift.end_time }} am {{ shift.location }}.<br />
-								{{ shift.max_angels }}
-								<hr />
-							{% endfor %}
-						</td>
+				{% for shifts in hour.2 %}
+				<td>
+					{% for shift in shifts %}
+					<div class="shift">
+						<p>Von {{ shift.start_time }} bis {{ shift.end_time }} am {{ shift.location }}.<br />
+						{{ shift.max_angels }}
+					</div>
 					{% endfor %}
-				</tr>
+				</td>
+				{% endfor %}
+			</tr>
 			{% endfor %}
 		</tbody>
 	</table>

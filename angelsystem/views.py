@@ -25,25 +25,23 @@ def shifts(request, date=False):
 		return redirect('angelsystem.views.shifts', date=_get_dates()[0])
 
 	categories = ShiftCategory.objects.all().order_by('name')
-	day_range = range(25)
-	out = OrderedDict()
+	hours = range(25)
 
-	for h in day_range:
-		normalized = str(h).rjust(2, "0")
-		out[normalized] = OrderedDict()
+	shift_hours = []
 
-		for cat in categories:
-			out[normalized][cat.name] = []
+	for hour in hours:
+		hour_shifts = []
+		normalized_hour = str(hour).rjust(2, "0")
 
-			for shift in cat.shift_set.filter(start_time__contains='{0} {1}:'.format(date, normalized)):
-				shift.start_time = shift.start_time.strftime("%H:%M")
-				shift.end_time = shift.end_time.strftime("%H:%M")
-				out[normalized][cat.name].append(shift)
+		for category in categories:
+			category_shifts = category.shift_set.filter(start_time__contains='{0} {1}:'.format(date, normalized_hour))
+			hour_shifts.append((category, category_shifts))
+		shift_hours.append((hour, normalized_hour, hour_shifts))
 
 	return render_to_response('all-shifts.html', {
 		'settings': settings,
 		'user': request.user,
-		'shifts': sorted(out.items()),
+		'shifts': sorted(shift_hours, lambda shift_hour: shift_hour[0]),
 		'categories': categories,
 		'dates': _getDates(),
 		'path': request.path
