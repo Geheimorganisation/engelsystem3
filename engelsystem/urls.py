@@ -7,6 +7,6 @@ admin.autodiscover()
 urlpatterns = patterns('angelsystem.views',
 	url(r'^admin/', include(admin.site.urls)),
 	url(r'^shifts/(?P<date>[0-9]{4}\-[0-9]{2}\-[0-9]{2})?', 'shifts'),
-	url(r'^my-shifts/', 'myShifts'),
+	url(r'^my-shifts/', 'my_shifts'),
 	url(r'^$', 'index')
 )
