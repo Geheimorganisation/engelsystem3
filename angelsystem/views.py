@@ -22,7 +22,7 @@ def blog(request):
 @login_required
 def shifts(request, date=False):
 	if not date:
-		the_date = _getDates()
+		the_date = _get_dates()
 		if the_date:
 			return redirect('angelsystem.views.shifts', date=the_date[0])
 
@@ -47,7 +47,7 @@ def shifts(request, date=False):
 		'user': request.user,
 		'shifts': sorted(out.items()),
 		'categories': categories,
-		'dates': _getDates(),
+		'dates': _get_dates(),
 		'path': request.path
 	})
 
