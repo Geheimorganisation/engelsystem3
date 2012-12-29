@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<article class="content">
+		<div class="row">
+			<h2>Login</h2>
+			<form action="." method="post" class="form-horizontal">{% csrf_token %}
+				{% if auth_form.non_field_errors %}
+					<div class="alert alert-error">
+						{{ auth_form.non_field_errors }}
+					</div>
+				{% endif %}
+				<fieldset>
+					<div class="control-group {% if form.username.errors %}error{% endif %}">
+						<label class="control-label" for="id_{{ form.username.name }}">{{ form.username.label }}</label>
+						<div class="controls">
+							{{ form.username }}
+							{% if form.username.errors %}
+								<div style="display:block;margin-top:5px;" class="help-inline">{{ form.username.errors }}</div>
+							{% endif %}
+						</div>
+					</div>
+					<div class="control-group {% if form.password.errors %}error{% endif %}">
+						<label class="control-label" for="id_{{ form.password.name }}">{{ form.password.label }}</label>
+						<div class="controls">
+							{{ form.password }}
+							{% if form.password.errors %}
+								<div style="display:block;margin-top:5px;" class="help-inline">{{ form.password.errors }}</div>
+							{% endif %}
+						</div>
+					</div>
+					<div class="control-group">
+						<div class="controls">
+							<input type="submit" class="btn btn-primary" value="Anmelden" />
+						</div>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+	</article>
+{% endblock %}

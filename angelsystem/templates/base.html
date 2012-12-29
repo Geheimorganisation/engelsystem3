@@ -1,10 +1,11 @@
+{% load static from staticfiles %}
 <!DOCTYPE html>
 <html>
 	<head>
 		<title>Engelsystem 3.0 {{ title }}</title>
 		<meta charset="utf-8" />
 
-		<link rel="stylesheet" href="{{ settings.STATIC_URL }}css/bootstrap.min.css" />
+		<link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}" />
 		<style>
 			body {
 				padding-top: 60px;
@@ -18,16 +19,18 @@
 					<div class="container-fluid">
 						<a class="brand" href="{% url angelsystem.views.index %}">Engelsystem 3.0</a>
 
-						<p class="navbar-text pull-right">
-							Ohai {{ user.username }}.
-						</p>
+						{% if user.is_authenticated %}
+							<p class="navbar-text pull-right">
+								Ohai {{ user.username }}.
+							</p>
 
-						<ul class="nav">
-							<li><a href="{% url angelsystem.views.index %}">Blog</a></li>
-							<li><a href="{% url angelsystem.views.shifts %}">Schichten</a></li>
-							<li><a href="{% url angelsystem.views.myShifts %}">Meine Schichten</a></li>
-							<li><a href="{{ settings.LOGOUT_URL }}">Abmelden</a></li>
-						</ul>
+							<ul class="nav">
+								<li><a href="{% url angelsystem.views.index %}">Blog</a></li>
+								<li><a href="{% url angelsystem.views.shifts %}">Schichten</a></li>
+								<li><a href="{% url angelsystem.views.myShifts %}">Meine Schichten</a></li>
+								<li><a href="{{ settings.LOGOUT_URL }}">Abmelden</a></li>
+							</ul>
+						{% endif %}
 					</div>
 				</div>
 			</div>
