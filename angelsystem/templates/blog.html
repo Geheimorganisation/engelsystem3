@@ -1,9 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
+	{% if not entries %}
+		<div class="alert alert-yellow">
+			Es gibt noch keine Blogeinträge!
+		</div>
+	{% endif %}
+
 	{% for entry in entries %}
 		<article>
-			<h2>{{ entry.title }} <small>von {{ entry.herald }} | {{ entry.create_time }}</small></h2>
+			<h2>{{ entry.title }} <small>von {{ entry.arch }} | {{ entry.create_time }}</small></h2>
 
 			{{ entry.content }}
 		</article>
