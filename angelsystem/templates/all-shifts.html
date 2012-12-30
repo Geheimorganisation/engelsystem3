@@ -19,11 +19,11 @@
 		<tbody>
 			{% for hour in shift_hours %}
 			<tr>
-				<th>{{ h.1 }}</th>
+				<th>{{ hour.1 }}</th>
 
 				{% for shifts in hour.2 %}
 				<td>
-					{% for shift in shifts %}
+					{% for shift in shifts.1 %}
 					<div class="shift">
 						<p>Von {{ shift.start_time }} bis {{ shift.end_time }} am {{ shift.location }}.<br />
 						{{ shift.max_angels }}

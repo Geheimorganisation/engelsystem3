@@ -43,7 +43,7 @@ def shifts(request, date=False):
 	return render_to_response('all-shifts.html', {
 		'settings': settings,
 		'user': request.user,
-		'shifts': sorted(shift_hours, lambda shift_hour: shift_hour[0]),
+		'shift_hours': sorted(shift_hours, key=lambda shift_hour: shift_hour[0]),
 		'categories': categories,
 		'dates': _get_dates(),
 		'path': request.path
