@@ -25,7 +25,7 @@
 				<td>
 					{% for shift in shifts.1 %}
 					<div class="shift">
-						<p>Von {{ shift.start_time }} bis {{ shift.end_time }} am {{ shift.location }}.<br />
+						<p>Von {{ shift.start_time|date:"G:i" }} bis {{ shift.end_time|date:"G:i" }} am {{ shift.location }}.<br />
 						{{ shift.max_angels }}
 					</div>
 					{% endfor %}

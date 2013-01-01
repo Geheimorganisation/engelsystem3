@@ -26,6 +26,7 @@ class Shift(models.Model):
 	start_time = models.DateTimeField()
 	end_time = models.DateTimeField()
 	max_angels = models.PositiveIntegerField()
+	users = models.ManyToManyField(User)
 
 class ShiftAdmin(admin.ModelAdmin):
 	list_display = ['category', 'location', 'start_time', 'end_time', 'max_angels']
