@@ -11,7 +11,7 @@
 			<tr>
 				<th></th>
 				{% for cat in categories.all %}
-					<th>{{ cat.name }}<br /><small>{{ cat.herald }} is your dirty herald.</small></th>
+					<th>{{ cat.name }}<br /><small>{{ cat.arch }} is your dirty arch angel.</small></th>
 				{% endfor %}
 			</tr>
 		</thead>
@@ -24,10 +24,7 @@
 				{% for shifts in hour.2 %}
 				<td>
 					{% for shift in shifts.1 %}
-					<div class="shift">
-						<p>Von {{ shift.start_time|date:"G:i" }} bis {{ shift.end_time|date:"G:i" }} am {{ shift.location }}.<br />
-						{{ shift.max_angels }}
-					</div>
+					<p><strong>Von {{ shift.start_time|date:"G:i" }} bis {{ shift.end_time|date:"G:i" }}:</strong> {{ shift.max_angels }} Engel gesucht</p>
 					{% endfor %}
 				</td>
 				{% endfor %}
