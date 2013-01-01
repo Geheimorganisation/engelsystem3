@@ -26,7 +26,7 @@ class Shift(models.Model):
 	start_time = models.DateTimeField()
 	end_time = models.DateTimeField()
 	max_angels = models.PositiveIntegerField()
-	users = models.ManyToManyField(User)
+	users = models.ManyToManyField(User, blank=True)
 
 	def required_angels(self):
 		return self.max_angels - self.users.count()
