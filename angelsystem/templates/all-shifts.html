@@ -24,7 +24,7 @@
 				{% for shifts in hour.2 %}
 				<td>
 					{% for shift in shifts.1 %}
-					<p><strong>Von {{ shift.start_time|date:"G:i" }} bis {{ shift.end_time|date:"G:i" }}:</strong> {{ shift.max_angels }} Engel gesucht</p>
+					<p><strong>Von {{ shift.start_time|date:"G:i" }} bis {{ shift.end_time|date:"G:i" }}:</strong> {% for user in shift.users.all %} {{ user }}, {% endfor %} {{ shift.required_angels }} Engel gesucht</p>
 					{% endfor %}
 				</td>
 				{% endfor %}

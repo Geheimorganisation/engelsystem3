@@ -28,6 +28,9 @@ class Shift(models.Model):
 	max_angels = models.PositiveIntegerField()
 	users = models.ManyToManyField(User)
 
+	def required_angels(self):
+		return self.max_angels - self.users.count()
+
 class ShiftAdmin(admin.ModelAdmin):
 	list_display = ['category', 'location', 'start_time', 'end_time', 'max_angels']
 	list_filter = list_display
