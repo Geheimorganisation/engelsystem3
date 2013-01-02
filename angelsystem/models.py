@@ -42,6 +42,7 @@ class Blog(models.Model):
 	title = models.CharField(max_length=30)
 	content = models.TextField()
 	create_time = models.DateTimeField(auto_now_add=True)
+	pin = models.BooleanField()
 
 class BlogAdmin(admin.ModelAdmin):
 	list_display = ['title', 'create_time']
