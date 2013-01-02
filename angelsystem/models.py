@@ -13,6 +13,7 @@ class ShiftCategory(models.Model):
 
 class ShiftLocation(models.Model):
 	location = models.CharField(unique=True, max_length=30)
+	color = models.CharField(max_length=6, null=True)
 
 	def __unicode__(self):
 		return self.location
