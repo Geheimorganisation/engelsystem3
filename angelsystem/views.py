@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response, redirect
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.conf import settings
 from django.http import HttpResponse
 from angelsystem.models import Blog, ShiftCategory, Shift
@@ -15,6 +16,15 @@ def blog(request):
 	entries_pinned = Blog.objects.filter(pin=True).order_by('-create_time')
 	entries_unpinned = Blog.objects.filter(pin=False).order_by('-create_time')
 	entries = list(chain(entries_pinned, entries_unpinned))
+
+	pagination = Paginator(entries, 5)
+	page = request.GET.get('page')
+	try:
+		entries = pagination.page(page)
+	except PageNotAnInteger:
+		entries = pagination.page(1)
+	except EmptyPage:
+		entries = pagination.page(pagination.num_pages)
 
 	return render_to_response('blog.html', {
 		'settings': settings,
