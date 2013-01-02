@@ -20,14 +20,14 @@ def blog(request):
 	})
 
 @login_required
-def shifts(request, date=False):
-	if not date:
-		the_date = _get_dates()
-		if the_date:
-			return redirect('angelsystem.views.shifts', date=the_date[0])
+def shifts(request, date=None):
+	if date is None:
+		dates = _get_dates()
+		if dates:
+			return redirect('angelsystem.views.shifts', date=dates[0])
 
 	categories = ShiftCategory.objects.all().order_by('name')
-	hours = range(25)
+	hours = range(24)
 
 	shift_hours = []
 
@@ -54,16 +54,15 @@ def my_shifts(request):
 	return None
 
 ## helpers
-def _get_dates():
-	shifts = Shift.objects.all()
+def _get_dates(shifts=None):
+	if shifts is None:
+		shifts = Shift.objects.all()
 	dates = []
 
-	if not shifts:
-		return False
-
 	for shift in shifts:
-		start_date = shift.start_time.strftime('%Y-%m-%d')
-		end_date = shift.end_time.strftime('%Y-%m-%d')
+		start_date = shift.start_time.date()
+		end_date = shift.end_time.date()
+
 		if start_date not in dates:
 			dates.append(start_date)
 		if end_date not in dates:

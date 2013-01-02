@@ -3,7 +3,7 @@
 {% block content %}
 	<ul class="nav nav-pills">
 		{% for date in dates %}
-			<li {% if date in path %}class="active"{% endif %}><a href="{% url angelsystem.views.shifts date=date %}">{{ date }}</a></li>
+			<li {% if date|date:"Y-m-d" in path %}class="active"{% endif %}><a href="{% url angelsystem.views.shifts date=date %}">{{ date }}</a></li>
 		{% endfor %}
 	</ul>
 	<table class="table table-bordered table-hover">
