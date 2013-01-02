@@ -4,6 +4,7 @@ from django.conf import settings
 from django.http import HttpResponse
 from angelsystem.models import Blog, ShiftCategory, Shift
 from collections import OrderedDict
+from itertools import chain
 
 @login_required
 def index(request):
@@ -11,7 +12,9 @@ def index(request):
 
 @login_required
 def blog(request):
-	entries = Blog.objects.all().order_by('-create_time')
+	entries_pinned = Blog.objects.filter(pin=True).order_by('-create_time')
+	entries_unpinned = Blog.objects.filter(pin=False).order_by('-create_time')
+	entries = list(chain(entries_pinned, entries_unpinned))
 
 	return render_to_response('blog.html', {
 		'settings': settings,
