@@ -14,4 +14,12 @@
 			{{ entry.content }}
 		</article>
 	{% endfor %}
+
+	<div class="pagination pagination-centered">
+		<ul>
+			<li {% if not entries.has_previous %}class="disabled"{% endif %}><a href="?page={{ entries.previous_page_number }}">«</a></li>
+			<li class="disabled"><a>{{ entries.number }}</a></li>
+			<li {% if not entries.has_next %}class="disabled"{% endif %}><a href="?page={{ entries.next_page_number }}">»</a></li>
+		</ul>
+	</div>
 {% endblock %}
